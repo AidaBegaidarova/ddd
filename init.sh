@@ -1,7 +1,9 @@
 #!/bin/bash
 
-if [ -f /etc/nginx/sites-enabled/default ]; then
-  sudo rm /etc/nginx/sites-enabled/default
+default_nginx=/etc/nginx/sites-enabled/default
+
+if [ -f $default_nginx ]; then
+  sudo rm $default_nginx
 fi
 sudo ln -sf /home/box/web/etc/nginx.conf /etc/nginx/sites-enabled/test.conf
 sudo /etc/init.d/nginx restart
