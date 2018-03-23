@@ -11,5 +11,5 @@ sudo /etc/init.d/nginx restart
 sudo killall gunicorn
 sudo gunicorn -c etc/gunicorn.conf.py hello:wsgi_app -D
 cd ask
-sudo gunicorn ask.wsgi -D
+sudo gunicorn -c ../etc/gunicorn.django.conf.py ask.wsgi -D
 #sudo /etc/init.d/gunicorn restart

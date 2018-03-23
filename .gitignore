@@ -2,4 +2,4 @@
 /lib/*
 *.pyc
 *.log
-pidfile
+pidfile*
