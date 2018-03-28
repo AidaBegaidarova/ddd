@@ -1,5 +1,6 @@
 /bin/*
 /lib/*
+/static/*
 *.pyc
 *.log
 pidfile*
