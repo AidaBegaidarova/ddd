@@ -26,11 +26,11 @@ def paginate(request, query_set, reverse_url_name, template_name):
     except:
         page = 1
     try: 
-        limit = int(request.GET.get('limit', 1))
+        limit = int(request.GET.get('limit', 10))
     except:
-        limit = 1
-    if limit > 1:
-        limit = 1
+        limit = 10
+    if limit > 10:
+        limit = 10
     paginator = Paginator(query_set, limit)
     paginator.baseurl = reverse(reverse_url_name)+'?page='
     try:
