@@ -6,7 +6,7 @@
     <body>
         {{ question.title }}<br>
         {{ question.text }}<br><br>
-        {% for answer in question.answer_to_question.all %}
+        {% for answer in question.answer_set.all %}
         {{ answer }}<br>
         {% endfor %}
     </body>
