@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^login/', views.test, name='login'),
     url(r'^signup/', views.test, name='signup'),
     url(r'^question/(\d+)/', views.question_detials, name='question'),
-    url(r'^ask/', views.test, name='ask'),
+    url(r'^ask/', views.question_add, name='ask'),
     url(r'^popular/', views.popular_questions, name='popular_questions'),
     url(r'^new/', views.test, name='new'),
 ]

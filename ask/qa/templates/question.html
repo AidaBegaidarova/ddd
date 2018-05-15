@@ -9,5 +9,10 @@
         {% for answer in question.answer_set.all %}
         {{ answer }}<br>
         {% endfor %}
+        <form method="post" action="/question/{{ question.pk }}/">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Send">
+        </form>
     </body>
 </html>

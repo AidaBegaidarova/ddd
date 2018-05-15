@@ -2,9 +2,10 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage
 from django.views.decorators.http import require_GET
-from django.http import HttpResponse 
+from django.http import HttpResponse, HttpResponseRedirect
 
-from qa.models import Question
+from .models import Question
+from .forms import AskForm, AnswerForm
 
 @require_GET
 def test(request, *args, **kwargs):
@@ -44,9 +45,30 @@ def paginate(request, query_set, reverse_url_name, template_name):
         'page': page 
     })
 
-@require_GET
 def question_detials(request, id):
     question = get_object_or_404(Question, pk=id)
+    if request.method == 'POST':
+        form = AnswerForm(data=request.POST)
+        if form.is_valid():
+            answer = form.save()
+            return HttpResponseRedirect(request.path)
+    else:
+        form = AnswerForm()   
     return render(request, 'question.html', {
-        'question': question
+        'question': question, 'form': form
     })
+
+def question_add(request):
+    if request.method == 'POST':
+        form = AskForm(data=request.POST)
+        if form.is_valid():
+            print('valid')
+            question = form.save()
+            url = question.get_url()
+            return HttpResponseRedirect(url)
+    else:
+        form = AskForm()
+    return render(request, 'question_add.html', {
+        'form': form
+        })
+    
