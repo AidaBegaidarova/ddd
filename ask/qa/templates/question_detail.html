@@ -8,12 +8,14 @@
         Text: {{ question.text }}<br>
         Author: {{ question.author }}<br><br>
         {% for answer in question.answer_set.all %}
-        Answer: {{ answer }}<br>
+        Answer: {{ answer.text }}<br>
         Author: {{ answer.author }}<br><br>
         {% endfor %}
         <form method="post" action="/question/{{ question.pk }}/">
             {% csrf_token %}
-            {{ form.as_p }}
+            <p>Answer: </p>
+            <p>{{ form.text }}</p>
+            <p>{{ form.question }}</p>
             <input type="submit" value="Send answer">
         </form>
     </body>

@@ -6,7 +6,6 @@ from django.urls import reverse
 
 class QuestionManager(models.Manager):
     def new(self):
-#        return self.order_by('-added_at')
         return self.order_by('-id')
     def popular(self):
         return self.order_by('-rating')
@@ -22,7 +21,7 @@ class Question(models.Model):
     objects = QuestionManager()
 
     def get_url(self):
-        return reverse('question', args=(self.pk,))
+        return reverse('question_detail', args=(self.pk,))
 
     def __unicode__(self):
         return self.title
