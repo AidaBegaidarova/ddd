@@ -7,6 +7,7 @@ if [ -f $default_nginx ]; then
 fi
 sudo ln -sf /home/box/web/etc/nginx.conf /etc/nginx/sites-enabled/test.conf
 sudo /etc/init.d/nginx restart
+sudo apt-get install python3-pymysql
 #sudo ln -sf /home/box/web/etc/hello.py /etc/gunicorn.d/test
 sudo killall gunicorn
 sudo gunicorn -c /home/box/web/etc/gunicorn.conf.py hello:wsgi_app -D
